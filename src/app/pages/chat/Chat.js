@@ -19,12 +19,20 @@ function Chat() {
 
   return (
     <>
-      <IconButton color="secondary" onClick={() => navigate("/")}>
-        <ArrowBackIcon sx={{ color: "ivory" }} />
-      </IconButton>
+      <Box className="aiprop-chat-backBtn">
+        <IconButton
+          color="secondary"
+          className="aiprop-chat-backBtn"
+          onClick={() => navigate("/")}
+        >
+          <ArrowBackIcon sx={{ color: "ivory" }} />
+        </IconButton>
+      </Box>
       <Box className="aiprop-chat-main-container">
         <Box className="aiprop-chat-title-container">
-          <Typography>Chat IA Trouve ton Avenir</Typography>
+          <Typography>
+            Pose tes question ici, l'IA te répondera de son mieux
+          </Typography>
         </Box>
         <Box className="aiprop-chat-airesponse-container">
           {chatBoxMsgArray}
@@ -32,7 +40,7 @@ function Chat() {
         <Box className="aiprop-chat-userprompt-container">
           <Input
             value={userInput ? userInput : ""}
-            placeholder="Type anything!"
+            placeholder="écris ici !"
             sx={{ minWidth: "60rem" }}
             onChange={(event) => {
               setUserInput(event.target.value);
