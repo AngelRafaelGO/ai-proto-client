@@ -2,5 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 7rem;
+}
+
+.aiprop-landing-chatbox-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 5rem;
 }
