@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export async function updateGoogleSheet(data) {
-  const url = "url-de-api-ia-ici";
+  const url = "e-endpoint-d'antoine";
 
   return axios
     .post(url, {
-      data: "le-body-que-api-attend",
+      data: "l'input-de-l'utilisateur",
     })
     .then((response) => {
       console.log(response);
