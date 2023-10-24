@@ -1,0 +1,13 @@
+## === DOCKERFILE DEV ===
+# L’image sur laquelle nous nous basons.
+FROM node:21
+# Chemin du dossier de travail.
+WORKDIR /code
+# Nous copions les fichiers package.json et package-lock.json dans notre image.
+COPY fablab-client/package*.json ./
+# Nous installons les packages nécessaires.
+RUN npm install
+# On signal sur quel port notre application va fonctionner.
+EXPOSE 3000
+# On choisit la commande qui va s’exécuter lors du lancement de notre image.
+CMD ["npm", "start"]

@@ -1,0 +1,26 @@
+## === DOCKER-COMPOSE PROD ===
+
+# On va pouvoir déclarer une liste de service que va lancer notre fichier.
+services: 
+    # On décrit notre service react : coding-factory-m1-fablab-client.
+    coding-factory-m1-fablab-client: 
+        # On nomme le conteneur docker
+        container_name: coding-factory-m1-fablab-client-prod
+        # On crée un hostname
+        hostname: coding-factory-m1-fablab-client-prod
+        build: 
+            dockerfile: Dockerfile-prod
+        # On précise les ports à utiliser
+        # sous le format [port de sortie]:[port de notre docker].
+        ports: 
+            - "8075:8080"
+        expose: 
+            - "8080"
+        environment: 
+            NODE_ENV: production
+
+
+# On nomme le dossier virtuel auquel les conteneur doivent être rattaché
+name: "coding-factory-m1-fablab"
+# On choisit la version de docker-compose à utiliser.
+version: '3.8'

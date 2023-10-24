@@ -1,0 +1,27 @@
+## === DOCKER-COMPOSE DEV ===
+
+# On va pouvoir déclarer une liste de service que va lancer notre fichier.
+services: 
+    # On décrit notre service react : coding-factory-m1-fablab-client.
+    coding-factory-m1-fablab-client-dev: 
+        # On nomme le conteneur docker
+        container_name: coding-factory-m1-fablab-client-dev
+        # On crée un hostname
+        hostname: coding-factory-m1-fablab-client-dev
+        build: 
+            dockerfile: Dockerfile-dev
+        # On précise les ports à utiliser
+        # sous le format [port de sortie]:[port de notre docker].
+        ports: 
+            - "3000:3000"
+        #stdin_open: true
+        # On précise ici les volumes montés, on voit donc pour nous les sources de
+        # notre application (ligne 20) et les dépendances téléchargées (ligne 21)
+        volumes: 
+            - ./fablab-client:/code
+            - /code/node_modules
+
+# On nomme le dossier virtuel auquel les conteneur doivent être rattaché
+name: "coding-factory-m1-fablab"
+# On choisit la version de docker-compose à utiliser.
+version: '3.8'
