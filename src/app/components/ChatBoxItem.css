@@ -1,0 +1,9 @@
+.aiprop-chatboxelement-main-container {
+  width: 100%;
+  border-style: solid;
+  border-color: #fa2f61;
+  border-radius: 1rem;
+  border-width: 0.1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}

@@ -14,7 +14,7 @@ const customTheme = createTheme({
       main: "#2a2826",
     },
     background: {
-      default: "#0f1924",
+      default: "#968870",
     },
     text: {
       primary: "#F2F1E9",

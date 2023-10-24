@@ -6,11 +6,15 @@
 }
 
 .aiprop-chat-airesponse-container {
-  min-width: 60rem;
+  min-width: 70rem;
   min-height: 70vh;
   border-radius: 1rem;
-  background-color: #015958;
+  background-color: #75654f;
   padding: 2rem;
+}
+
+.aiprop-chat-title-container {
+  margin-bottom: 3rem;
 }
 
 .aiprop-chat-userprompt-container {
