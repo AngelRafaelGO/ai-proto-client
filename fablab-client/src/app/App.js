@@ -30,7 +30,7 @@ const customTheme = createTheme({
       main: "#2a2826",
     },
     background: {
-      default: "#968870",
+      default: "#413124",
     },
     text: {
       primary: "#F2F1E9",

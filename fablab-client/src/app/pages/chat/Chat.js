@@ -106,9 +106,9 @@ function Chat() {
         {firstLoadAutoPrompt ? (
           ""
         ) : (
-          <Box>
+          <Box sx={{ marginLeft: "49%" }}>
             <Button
-              sx={{ marginLeft: "1rem" }}
+              sx={{ marginTop: "0.5rem" }}
               className="aiprop-chat-question-btn"
               onClick={() => handleOpen()}
             >
