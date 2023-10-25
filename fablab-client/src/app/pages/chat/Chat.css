@@ -14,7 +14,10 @@
 }
 
 .aiprop-chat-title-container {
-  margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: first baseline;
+  margin-top: 2rem;
 }
 
 .aiprop-chat-exquestions-container {
@@ -29,7 +32,7 @@
   min-height: 10vh;
   border-radius: 1rem;
   padding: 2rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .aiprop-chat-questions-modal {

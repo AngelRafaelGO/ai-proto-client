@@ -10,10 +10,11 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ChatBoxItem from "../../components/chatBoxItem/ChatBoxItem";
-import IaLoading from "../../components/iaLoading/AiLoading";
-import "./Chat.css";
 import { getAiResponse } from "../../services/data.service";
 import { predefinedQuestions } from "../../tools/predefinedQuestions";
+import IaLoading from "../../components/iaLoading/AiLoading";
+import ia_pet from "../../assets/ai_pet.png";
+import "./Chat.css";
 
 function Chat() {
   const navigate = useNavigate();
@@ -63,19 +64,25 @@ function Chat() {
 
   return (
     <>
-      <Box className="aiprop-chat-backBtn">
-        <IconButton
-          color="secondary"
-          className="aiprop-chat-backBtn"
-          onClick={() => navigate("/")}
-        >
-          <ArrowBackIcon sx={{ color: "ivory" }} />
-        </IconButton>
-      </Box>
       <Box className="aiprop-chat-main-container">
         <Box className="aiprop-chat-title-container">
-          <Typography>
-            Posez vos questions ici, l'IA te répondera de son mieux
+          <Box sx={{ position: "absolute", left: "5rem" }}>
+            <IconButton color="secondary" onClick={() => navigate("/")}>
+              <ArrowBackIcon sx={{ color: "ivory" }} />
+            </IconButton>
+          </Box>
+          <Box
+            component="img"
+            sx={{
+              height: "4rem",
+              width: "4rem",
+              marginRight: "1rem",
+            }}
+            alt="la mascotte d'IASup"
+            src={ia_pet}
+          />
+          <Typography sx={{ marginBottom: "1rem" }}>
+            Posez vos questions ici, je vous réponderai de mon mieux
           </Typography>
         </Box>
         <Box className="aiprop-chat-airesponse-container">
@@ -88,7 +95,7 @@ function Chat() {
                 className="aiprop-chat-question-btn"
                 onClick={() => handleOpen()}
               >
-                Click ici
+                Cliquez ici
               </Button>
             </Box>
           ) : (
@@ -112,7 +119,7 @@ function Chat() {
         <Box className="aiprop-chat-userprompt-container">
           <Input
             value={userInput ? userInput : ""}
-            placeholder="écris ici !"
+            placeholder="écrivez ici !"
             sx={{ minWidth: "60rem" }}
             onChange={(event) => {
               setUserInput(event.target.value);
@@ -133,8 +140,13 @@ function Chat() {
         >
           <Box className="aiprop-chat-questions-modal">
             <Box>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                Text in a modal
+              <Typography
+                sx={{ marginBottom: "2rem" }}
+                id="modal-modal-title"
+                variant="h6"
+                component="h2"
+              >
+                Voici quelques idées pour bien démarer
               </Typography>
             </Box>
             {predefinedQuestions.map((item) => (

@@ -20,7 +20,7 @@ function Landing() {
         </Box>
         <Box className="aiprop-landing-chatbox-navigation">
           <Button variant="outlined" onClick={() => navigate("/chat")}>
-            Chat
+            Démarer
           </Button>
         </Box>
       </Box>
