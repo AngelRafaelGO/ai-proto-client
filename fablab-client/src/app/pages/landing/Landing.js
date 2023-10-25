@@ -12,7 +12,7 @@ function Landing() {
         <Box>
           <Typography variant="h1">Bienvenue à IASup</Typography>
           <Typography sx={{ marginTop: "2rem" }} variant="h6">
-            IASup vous aide dans votre recherche de école et de formation
+            IASup vous aide dans votre recherche d'école et de formation
           </Typography>
           <Typography variant="h6">
             Discutez avec notre IA et trouvez votre voie !

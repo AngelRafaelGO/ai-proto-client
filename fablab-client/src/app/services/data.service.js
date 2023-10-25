@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function updateGoogleSheet(data) {
+export async function getAiResponse(data) {
   const url = "e-endpoint-d'antoine";
 
   return axios
