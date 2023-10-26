@@ -174,7 +174,7 @@ function Chat() {
                 variant="h6"
                 component="h2"
               >
-                Voici quelques idées pour bien démarer
+                Voici quelques idées pour bien démarrer
               </Typography>
             </Box>
             {predefinedQuestions.map((item) => (
