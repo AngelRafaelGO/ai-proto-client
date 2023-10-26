@@ -7,7 +7,9 @@ import {
   Input,
   Button,
   Modal,
+  Snackbar,
 } from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ChatBoxItem from "../../components/chatBoxItem/ChatBoxItem";
 import { getAiResponse } from "../../services/data.service";
@@ -15,6 +17,11 @@ import { predefinedQuestions } from "../../tools/predefinedQuestions";
 import IaLoading from "../../components/iaLoading/AiLoading";
 import ia_pet from "../../assets/ai_pet.png";
 import "./Chat.css";
+
+// Mui toast component
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function Chat() {
   const navigate = useNavigate();
@@ -28,9 +35,10 @@ function Chat() {
   const [userInput, setUserInput] = useState("");
   const [aiResponseLoading, setAiResponseLoading] = useState(false);
   const [firstLoadAutoPrompt, setFirstLoadAutoPrompt] = useState(true);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [toastOpen, setToastOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleOpen = () => setModalOpen(true);
+  const handleClose = () => setModalOpen(false);
 
   const getResponseFromAi = async (promptTxt) => {
     setAiResponseLoading(true);
@@ -46,19 +54,32 @@ function Chat() {
   };
 
   const handleUserPrompt = async (promptTxt) => {
-    if (firstLoadAutoPrompt === true) {
-      setFirstLoadAutoPrompt(false);
-    }
+    if (promptTxt == "") {
+      // console.log("display toast");
+      setToastOpen(true);
+    } else {
+      if (firstLoadAutoPrompt === true) {
+        setFirstLoadAutoPrompt(false);
+      }
 
-    addElementToChatBox(promptTxt, "right");
-    const aiResponse = await getResponseFromAi(promptTxt);
-    addElementToChatBox(aiResponse, "left");
-    setAiResponseLoading(false);
+      addElementToChatBox(promptTxt, "right");
+      const aiResponse = await getResponseFromAi(promptTxt);
+      addElementToChatBox(aiResponse, "left");
+      setAiResponseLoading(false);
+    }
   };
 
   const handleInsertQuestion = (questionTxt) => {
     handleUserPrompt(questionTxt);
     handleClose();
+  };
+
+  const handleToastClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setToastOpen(false);
   };
 
   return (
@@ -140,7 +161,7 @@ function Chat() {
           />
         </Box>
         <Modal
-          open={open}
+          open={modalOpen}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
@@ -167,6 +188,19 @@ function Chat() {
             ))}
           </Box>
         </Modal>
+        <Snackbar
+          open={toastOpen}
+          autoHideDuration={4000}
+          onClose={handleToastClose}
+        >
+          <Alert
+            onClose={handleToastClose}
+            severity="warning"
+            sx={{ width: "100%" }}
+          >
+            Le champ est vide
+          </Alert>
+        </Snackbar>
       </Box>
     </>
   );
