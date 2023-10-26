@@ -10,6 +10,11 @@ export async function getAiResponse(userInputTxt) {
     })
     .then((response) => {
       console.log(response);
-      // if status code 200, return ia response
+      if (response.status === 200) {
+        return "the-ai-response-txt";
+      }
+    })
+    .catch((error) => {
+      console.log(error);
     });
 }
