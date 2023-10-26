@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function getAiResponse(data) {
+export async function getAiResponse(userInputTxt) {
   const url = "e-endpoint-d'antoine";
 
   return axios

@@ -24,11 +24,12 @@ function Stats() {
         </Box>
       </Box>
       <Box className="iaprop-stats-container">
-        <Box className="iaprop-stats-generic-stat-container">Stat 1</Box>
-        <Box className="iaprop-stats-generic-stat-container">Stat 2</Box>
-        <Box className="iaprop-stats-generic-stat-container">Stat 3</Box>
-        <Box className="iaprop-stats-generic-stat-container">Stat 4</Box>
-        <Box className="iaprop-stats-generic-stat-container">Stat 5</Box>
+        <Box className="iaprop-stats-generic-stat-container">
+          Nombre des questions posées : {5}
+        </Box>
+        <Box className="iaprop-stats-generic-stat-container">
+          Nombre d'écoles proposées : {9}
+        </Box>
       </Box>
     </Box>
   );

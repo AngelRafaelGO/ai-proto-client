@@ -32,9 +32,9 @@ function Chat() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const getResponseFromAi = async () => {
+  const getResponseFromAi = async (promptTxt) => {
     setAiResponseLoading(true);
-    const response = await getAiResponse(userInput);
+    const response = await getAiResponse(promptTxt);
     // Insert 'if' here to verify http status = 200
     console.log(response);
   };
@@ -49,7 +49,7 @@ function Chat() {
       <ChatBoxItem txtPrompt={promptTxt} stylePlacement={"right"} />,
     ]);
 
-    const aiResponse = await getResponseFromAi();
+    const aiResponse = await getResponseFromAi(promptTxt);
     setChatBoxMsgArray([
       ...chatBoxMsgArray,
       <ChatBoxItem txtPrompt={aiResponse} stylePlacement={"left"} />,
