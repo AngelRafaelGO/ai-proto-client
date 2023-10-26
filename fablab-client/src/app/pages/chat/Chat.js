@@ -54,6 +54,7 @@ function Chat() {
       ...chatBoxMsgArray,
       <ChatBoxItem txtPrompt={aiResponse} stylePlacement={"left"} />,
     ]);
+
     setAiResponseLoading(false);
   };
 
@@ -70,6 +71,14 @@ function Chat() {
             <IconButton color="secondary" onClick={() => navigate("/")}>
               <ArrowBackIcon sx={{ color: "ivory" }} />
             </IconButton>
+          </Box>
+          <Box sx={{ position: "absolute", right: "5rem" }}>
+            <Button
+              sx={{ backgroundColor: "#2C5E2E" }}
+              onClick={() => navigate("/stats")}
+            >
+              Stats
+            </Button>
           </Box>
           <Box
             component="img"

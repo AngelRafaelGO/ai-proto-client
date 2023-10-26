@@ -3,6 +3,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import Landing from "./pages/landing/Landing";
 import Chat from "./pages/chat/Chat";
+import Stats from "./pages/stats/Stats";
 import "./App.css";
 
 const customTheme = createTheme({
@@ -44,6 +45,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/stats" element={<Stats />} />
       </Routes>
       <CssBaseline />
     </ThemeProvider>

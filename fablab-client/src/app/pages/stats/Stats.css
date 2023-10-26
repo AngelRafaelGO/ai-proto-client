@@ -1,0 +1,18 @@
+.iaprop-stats-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.iaprop-stats-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+
+.iaprop-stats-generic-stat-container {
+  margin-top: 1rem;
+}
