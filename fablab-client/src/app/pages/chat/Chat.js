@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -35,8 +35,14 @@ function Chat() {
   const getResponseFromAi = async (promptTxt) => {
     setAiResponseLoading(true);
     const response = await getAiResponse(promptTxt);
-    // Insert 'if' here to verify http status = 200
-    console.log(response);
+    return "the-response-from-the-ai";
+  };
+
+  const addElementToChatBox = (txt, placement) => {
+    setChatBoxMsgArray((chatBoxMsgArray) => [
+      ...chatBoxMsgArray,
+      <ChatBoxItem txtPrompt={txt} stylePlacement={placement} />,
+    ]);
   };
 
   const handleUserPrompt = async (promptTxt) => {
@@ -44,17 +50,9 @@ function Chat() {
       setFirstLoadAutoPrompt(false);
     }
 
-    setChatBoxMsgArray([
-      ...chatBoxMsgArray,
-      <ChatBoxItem txtPrompt={promptTxt} stylePlacement={"right"} />,
-    ]);
-
+    addElementToChatBox(promptTxt, "right");
     const aiResponse = await getResponseFromAi(promptTxt);
-    setChatBoxMsgArray([
-      ...chatBoxMsgArray,
-      <ChatBoxItem txtPrompt={aiResponse} stylePlacement={"left"} />,
-    ]);
-
+    addElementToChatBox(aiResponse, "left");
     setAiResponseLoading(false);
   };
 

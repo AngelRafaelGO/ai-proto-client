@@ -6,7 +6,11 @@ export default function ChatBoxItem({ txtPrompt, stylePlacement }) {
   return (
     <Box
       className="aiprop-chatboxelement-main-container"
-      sx={{ marginLeft: "auto" }}
+      sx={
+        stylePlacement == "right"
+          ? { marginLeft: "auto" }
+          : { marginRight: "auto" }
+      }
     >
       <Box sx={{ textAlign: stylePlacement }}>
         <Typography>{txtPrompt}</Typography>

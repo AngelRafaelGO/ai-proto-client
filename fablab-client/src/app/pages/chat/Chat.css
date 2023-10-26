@@ -8,9 +8,12 @@
 .aiprop-chat-airesponse-container {
   min-width: 70rem;
   min-height: 70vh;
+  max-width: 70rem;
+  max-height: 70vh;
   border-radius: 1rem;
   background-color: #271e14;
   padding: 2rem;
+  overflow: auto;
 }
 
 .aiprop-chat-title-container {
