@@ -59,7 +59,9 @@ function ParcoursLocation() {
           </IconButton>
         </Box>
         <Box sx={{ marginTop: "4rem" }}>
-          <Typography variant="h5">Quel est votre code postal ?</Typography>
+          <Typography variant="h5">
+            Quel campus vous convient le mieux ?
+          </Typography>
         </Box>
       </Box>
       <Box className="iaprop-stats-container">

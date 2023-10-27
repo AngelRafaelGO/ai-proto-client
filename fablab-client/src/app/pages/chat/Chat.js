@@ -12,6 +12,7 @@ import {
 import MuiAlert from "@mui/material/Alert";
 import HomeIcon from "@mui/icons-material/Home";
 import ChatBoxItem from "../../components/chatBoxItem/ChatBoxItem";
+import ChatBoxIaItem from "../../components/chatBoxIAItem/ChatBoxIaItem";
 import {
   getAiResponse,
   getInitialAiResponse,
@@ -21,7 +22,6 @@ import IaLoading from "../../components/iaLoading/AiLoading";
 import ia_pet from "../../assets/ai_pet.png";
 import "./Chat.css";
 
-// Mui toast component
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -54,10 +54,17 @@ function Chat() {
   };
 
   const addElementToChatBox = (txt, placement) => {
-    setChatBoxMsgArray((chatBoxMsgArray) => [
-      ...chatBoxMsgArray,
-      <ChatBoxItem txtPrompt={txt} stylePlacement={placement} />,
-    ]);
+    if (placement == "left") {
+      setChatBoxMsgArray((chatBoxMsgArray) => [
+        ...chatBoxMsgArray,
+        <ChatBoxIaItem txtPrompt={txt} stylePlacement={placement} />,
+      ]);
+    } else {
+      setChatBoxMsgArray((chatBoxMsgArray) => [
+        ...chatBoxMsgArray,
+        <ChatBoxItem txtPrompt={txt} stylePlacement={placement} />,
+      ]);
+    }
   };
 
   const handleUserPrompt = async (promptTxt) => {

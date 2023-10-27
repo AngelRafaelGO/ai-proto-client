@@ -1,0 +1,18 @@
+.aiprop-chatboxelement-main-container {
+  width: 75%;
+  border-style: solid;
+  border-color: #fa2f61;
+  border-radius: 1rem;
+  border-width: 0.1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.iaprop-chatboxelement-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

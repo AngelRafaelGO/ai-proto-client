@@ -20,7 +20,7 @@ export async function getAiResponse(userInputTxt) {
 }
 
 export async function getInitialAiResponse(userData) {
-  const url = "http://localhost:5000/message";
+  const url = "http://localhost:5000/bon-end-point";
 
   return axios
     .post(url, {
@@ -31,6 +31,23 @@ export async function getInitialAiResponse(userData) {
       console.log(response);
       if (response.status === 200) {
         return "the-ai-response-txt";
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+export async function sendUsefulnessAnswer(answer) {
+  const url = "http://localhost:5000/bon-end-point";
+  return axios
+    .post(url, {
+      apiKey: "la-key",
+      data: { message: answer },
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        return true;
       }
     })
     .catch((error) => {
