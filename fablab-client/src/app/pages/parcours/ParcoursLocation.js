@@ -4,36 +4,49 @@ import { Box, Button, IconButton, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import "./ParcoursName";
 
-function ParcoursStudies() {
+function ParcoursLocation() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [userStudies, setUserStudies] = useState();
+  const [userLocation, setUserLocation] = useState();
   const [userData, setUserData] = useState();
 
-  const handleUserSelection = (studiesChoice) => {
-    setUserStudies(studiesChoice);
+  const handleUserLocation = (userLocation) => {
+    setUserLocation(userLocation);
   };
 
   useEffect(() => {
-    if (userStudies != undefined) {
-      navigate("/parcourslocation", {
+    if (userLocation != undefined) {
+      navigate("/chat", {
         state: {
           userName: userData.userName,
           userAge: userData.userAge,
           userInterests: userData.userInterests,
           userInterestsPro: userData.userInterestsPro,
-          userStudies: userStudies,
+          userStudies: userData.userStudies,
+          userLocation: userLocation,
         },
       });
     }
-  }, [userStudies]);
+  }, [userLocation]);
 
   useEffect(() => {
     if (state === null) {
       navigate("/");
     } else {
-      const { userName, userAge, userInterests, userInterestsPro } = state;
-      setUserData({ userName, userAge, userInterests, userInterestsPro });
+      const {
+        userName,
+        userAge,
+        userInterests,
+        userInterestsPro,
+        userStudies,
+      } = state;
+      setUserData({
+        userName,
+        userAge,
+        userInterests,
+        userInterestsPro,
+        userStudies,
+      });
     }
   }, []);
 
@@ -46,9 +59,7 @@ function ParcoursStudies() {
           </IconButton>
         </Box>
         <Box sx={{ marginTop: "4rem" }}>
-          <Typography variant="h5">
-            Quel niveau d'études cherchez-vous ?
-          </Typography>
+          <Typography variant="h5">Quel est votre code postal ?</Typography>
         </Box>
       </Box>
       <Box className="iaprop-stats-container">
@@ -56,23 +67,23 @@ function ParcoursStudies() {
           <Button
             sx={{ marginRight: "2rem" }}
             variant="outlined"
-            onClick={() => handleUserSelection("bac + 2")}
+            onClick={() => handleUserLocation("paris")}
           >
-            bac + 2
+            Paris
           </Button>
           <Button
             sx={{ marginRight: "2rem" }}
             variant="outlined"
-            onClick={() => handleUserSelection("bac + 3")}
+            onClick={() => handleUserLocation("cergy-pontoise")}
           >
-            bac + 3
+            Cergy-Pontoise
           </Button>
           <Button
             sx={{ marginRight: "2rem" }}
             variant="outlined"
-            onClick={() => handleUserSelection("bac + 5")}
+            onClick={() => handleUserLocation("montigny-le-brotonneux")}
           >
-            bac + 5
+            Montigny-le-Brotonneux
           </Button>
         </Box>
       </Box>
@@ -80,4 +91,4 @@ function ParcoursStudies() {
   );
 }
 
-export default ParcoursStudies;
+export default ParcoursLocation;

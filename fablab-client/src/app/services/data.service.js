@@ -18,3 +18,22 @@ export async function getAiResponse(userInputTxt) {
       console.log(error);
     });
 }
+
+export async function getInitialAiResponse(userData) {
+  const url = "http://localhost:5000/message";
+
+  return axios
+    .post(url, {
+      apiKey: "la-key",
+      data: { message: userData },
+    })
+    .then((response) => {
+      console.log(response);
+      if (response.status === 200) {
+        return "the-ai-response-txt";
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}

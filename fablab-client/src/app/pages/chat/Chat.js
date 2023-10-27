@@ -12,7 +12,10 @@ import {
 import MuiAlert from "@mui/material/Alert";
 import HomeIcon from "@mui/icons-material/Home";
 import ChatBoxItem from "../../components/chatBoxItem/ChatBoxItem";
-import { getAiResponse } from "../../services/data.service";
+import {
+  getAiResponse,
+  getInitialAiResponse,
+} from "../../services/data.service";
 import { predefinedQuestions } from "../../tools/predefinedQuestions";
 import IaLoading from "../../components/iaLoading/AiLoading";
 import ia_pet from "../../assets/ai_pet.png";
@@ -25,18 +28,22 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 function Chat() {
   const navigate = useNavigate();
-  const [chatBoxMsgArray, setChatBoxMsgArray] = useState([
-    <Box className="aiprop-chatboxelement-main-container">
-      <Box sx={{ textAlign: "left" }}>
-        <Typography>Bonjour ! Comment puis je vous aider ?</Typography>
-      </Box>
-    </Box>,
-  ]);
+  const { state } = useLocation();
+  const {
+    userName,
+    userAge,
+    userInterests,
+    userInterestsPro,
+    userStudies,
+    userLocation,
+  } = state;
+  const [chatBoxMsgArray, setChatBoxMsgArray] = useState([]);
   const [userInput, setUserInput] = useState("");
-  const [aiResponseLoading, setAiResponseLoading] = useState(false);
-  const [firstLoadAutoPrompt, setFirstLoadAutoPrompt] = useState(true);
+  const [aiResponseLoading, setAiResponseLoading] = useState(true);
   const [toastOpen, setToastOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [userData, setUserData] = useState();
+  const [loading, setLoading] = useState();
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
 
@@ -57,10 +64,6 @@ function Chat() {
     if (promptTxt == "") {
       setToastOpen(true);
     } else {
-      if (firstLoadAutoPrompt === true) {
-        setFirstLoadAutoPrompt(false);
-      }
-
       addElementToChatBox(promptTxt, "right");
       const aiResponse = await getResponseFromAi(promptTxt);
       addElementToChatBox(aiResponse, "left");
@@ -81,18 +84,34 @@ function Chat() {
     setToastOpen(false);
   };
 
-  const { state } = useLocation();
-  const { userName, userAge, userInterests, userInterestsPro, userStudies } =
-    state;
+  const getFirstAiResponse = async () => {
+    if (userData != undefined) {
+      const firstAiResponse = await getInitialAiResponse(userData);
+      addElementToChatBox("hello", "left");
+      setAiResponseLoading(false);
+    }
+  };
 
   useEffect(() => {
-    console.log({
-      userName,
-      userAge,
-      userInterests,
-      userInterestsPro,
-      userStudies,
-    });
+    if (loading === true) {
+      getFirstAiResponse();
+      setLoading(false);
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    if (state != null) {
+      setUserData({
+        userName,
+        userAge,
+        userInterests,
+        userInterestsPro,
+        userStudies,
+        userLocation,
+      });
+
+      setLoading(true);
+    }
   }, []);
 
   return (
@@ -128,35 +147,17 @@ function Chat() {
         </Box>
         <Box className="aiprop-chat-airesponse-container">
           {chatBoxMsgArray}
-          {firstLoadAutoPrompt ? (
-            <Box sx={{ textAlign: "right" }}>
-              <Typography>Pas de questions en tête ?</Typography>
-              <Button
-                sx={{ marginLeft: "1rem", textAlign: "left" }}
-                className="aiprop-chat-question-btn"
-                onClick={() => handleOpen()}
-              >
-                Cliquez ici
-              </Button>
-            </Box>
-          ) : (
-            ""
-          )}
           {aiResponseLoading ? <IaLoading /> : ""}
         </Box>
-        {firstLoadAutoPrompt ? (
-          ""
-        ) : (
-          <Box sx={{ marginLeft: "49%" }}>
-            <Button
-              sx={{ marginTop: "0.5rem" }}
-              className="aiprop-chat-question-btn"
-              onClick={() => handleOpen()}
-            >
-              Revoir les questions
-            </Button>
-          </Box>
-        )}
+        <Box sx={{ marginLeft: "49%" }}>
+          <Button
+            sx={{ marginTop: "0.5rem" }}
+            className="aiprop-chat-question-btn"
+            onClick={() => handleOpen()}
+          >
+            Pas d'idée ? Clique ici !
+          </Button>
+        </Box>
         <Box className="aiprop-chat-userprompt-container">
           <Input
             value={userInput ? userInput : ""}
@@ -187,7 +188,7 @@ function Chat() {
                 variant="h6"
                 component="h2"
               >
-                Voici quelques idées pour bien démarrer
+                Voici quelques idées si vous ne savez pas quoi demander
               </Typography>
             </Box>
             {predefinedQuestions.map((item, i) => (

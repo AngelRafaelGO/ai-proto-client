@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   Box,
@@ -18,15 +18,14 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 function ParcoursInterestsPro() {
   const navigate = useNavigate();
+  const { state } = useLocation();
   const [userInterestsPro, setuSerInterestsPro] = useState();
   const [toastOpen, setToastOpen] = useState(false);
+  const [userData, setUserData] = useState();
 
   const handleUserIntPro = (userInput) => {
     setuSerInterestsPro(userInput);
   };
-
-  const { state } = useLocation();
-  const { userName, userAge, userInterests } = state;
 
   const handleNavigation = () => {
     if (userInterestsPro == "" || userInterestsPro === undefined) {
@@ -34,9 +33,9 @@ function ParcoursInterestsPro() {
     } else {
       navigate("/parcoursstudies", {
         state: {
-          userName: userName,
-          userAge: userAge,
-          userInterests: userInterests,
+          userName: userData.userName,
+          userAge: userData.userAge,
+          userInterests: userData.userInterests,
           userInterestsPro: userInterestsPro,
         },
       });
@@ -50,6 +49,15 @@ function ParcoursInterestsPro() {
 
     setToastOpen(false);
   };
+
+  useEffect(() => {
+    if (state === null) {
+      navigate("/");
+    } else {
+      const { userName, userAge, userInterests } = state;
+      setUserData({ userName, userAge, userInterests });
+    }
+  }, []);
 
   return (
     <Box>

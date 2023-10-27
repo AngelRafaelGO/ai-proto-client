@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   Box,
@@ -17,23 +17,22 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 function ParcoursAge() {
+  const { state } = useLocation();
   const navigate = useNavigate();
   const [userAge, setUserAge] = useState();
   const [toastOpen, setToastOpen] = useState(false);
+  const [userData, setUserData] = useState();
 
   const handleUserAge = (userInput) => {
     setUserAge(userInput);
   };
-
-  const { state } = useLocation();
-  const { userName } = state;
 
   const handleNavigation = () => {
     if (userAge == "" || userAge === undefined) {
       setToastOpen(true);
     } else {
       navigate("/parcoursinterests", {
-        state: { userAge: userAge, userName: userName },
+        state: { userAge: userAge, userName: userData },
       });
     }
   };
@@ -45,6 +44,15 @@ function ParcoursAge() {
 
     setToastOpen(false);
   };
+
+  useEffect(() => {
+    if (state === null) {
+      navigate("/");
+    } else {
+      const { userName } = state;
+      setUserData(userName);
+    }
+  }, []);
 
   return (
     <Box>

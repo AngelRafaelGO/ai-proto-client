@@ -9,6 +9,7 @@ import ParcoursAge from "./pages/parcours/ParcoursAge";
 import ParcoursInterests from "./pages/parcours/ParcoursInterests";
 import ParcoursInterestsPro from "./pages/parcours/ParcoursInterestsPro";
 import ParcoursStudies from "./pages/parcours/ParcoursStudies";
+import ParcoursLocation from "./pages/parcours/ParcoursLocation";
 import "./App.css";
 
 const customTheme = createTheme({
@@ -55,6 +56,7 @@ function App() {
         <Route path="/parcoursage" element={<ParcoursAge />} />
         <Route path="/parcoursinterests" element={<ParcoursInterests />} />
         <Route path="/parcoursstudies" element={<ParcoursStudies />} />
+        <Route path="/parcourslocation" element={<ParcoursLocation />} />
         <Route
           path="/parcoursinterestspro"
           element={<ParcoursInterestsPro />}
