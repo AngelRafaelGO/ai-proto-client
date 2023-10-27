@@ -67,7 +67,9 @@ function ParcoursInterests() {
           </IconButton>
         </Box>
         <Box sx={{ marginTop: "4rem" }}>
-          <Typography variant="h5">Quels sont vos centres d'intérêt</Typography>
+          <Typography variant="h5">
+            Quels sont vos centres d'intérêt ?
+          </Typography>
         </Box>
       </Box>
       <Box className="iaprop-stats-container">

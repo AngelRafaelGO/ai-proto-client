@@ -130,14 +130,6 @@ function Chat() {
               <HomeIcon sx={{ color: "ivory" }} />
             </IconButton>
           </Box>
-          <Box sx={{ position: "absolute", right: "5rem" }}>
-            <Button
-              sx={{ backgroundColor: "#2C5E2E" }}
-              onClick={() => navigate("/stats")}
-            >
-              Stats
-            </Button>
-          </Box>
           <Box
             component="img"
             sx={{
