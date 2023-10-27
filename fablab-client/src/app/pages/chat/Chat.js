@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Box,
   IconButton,
@@ -10,7 +10,7 @@ import {
   Snackbar,
 } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import HomeIcon from "@mui/icons-material/Home";
 import ChatBoxItem from "../../components/chatBoxItem/ChatBoxItem";
 import { getAiResponse } from "../../services/data.service";
 import { predefinedQuestions } from "../../tools/predefinedQuestions";
@@ -55,7 +55,6 @@ function Chat() {
 
   const handleUserPrompt = async (promptTxt) => {
     if (promptTxt == "") {
-      // console.log("display toast");
       setToastOpen(true);
     } else {
       if (firstLoadAutoPrompt === true) {
@@ -82,13 +81,27 @@ function Chat() {
     setToastOpen(false);
   };
 
+  const { state } = useLocation();
+  const { userName, userAge, userInterests, userInterestsPro, userStudies } =
+    state;
+
+  useEffect(() => {
+    console.log({
+      userName,
+      userAge,
+      userInterests,
+      userInterestsPro,
+      userStudies,
+    });
+  }, []);
+
   return (
     <>
       <Box className="aiprop-chat-main-container">
         <Box className="aiprop-chat-title-container">
           <Box sx={{ position: "absolute", left: "5rem" }}>
             <IconButton color="secondary" onClick={() => navigate("/")}>
-              <ArrowBackIcon sx={{ color: "ivory" }} />
+              <HomeIcon sx={{ color: "ivory" }} />
             </IconButton>
           </Box>
           <Box sx={{ position: "absolute", right: "5rem" }}>
@@ -177,8 +190,9 @@ function Chat() {
                 Voici quelques idées pour bien démarrer
               </Typography>
             </Box>
-            {predefinedQuestions.map((item) => (
+            {predefinedQuestions.map((item, i) => (
               <Button
+                key={i}
                 onClick={() => {
                   handleInsertQuestion(item.questionTxt);
                 }}

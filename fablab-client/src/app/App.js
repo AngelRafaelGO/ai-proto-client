@@ -4,6 +4,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Landing from "./pages/landing/Landing";
 import Chat from "./pages/chat/Chat";
 import Stats from "./pages/stats/Stats";
+import ParcoursName from "./pages/parcours/ParcoursName";
+import ParcoursAge from "./pages/parcours/ParcoursAge";
+import ParcoursInterests from "./pages/parcours/ParcoursInterests";
+import ParcoursInterestsPro from "./pages/parcours/ParcoursInterestsPro";
+import ParcoursStudies from "./pages/parcours/ParcoursStudies";
 import "./App.css";
 
 const customTheme = createTheme({
@@ -46,6 +51,14 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/stats" element={<Stats />} />
+        <Route path="/parcoursname" element={<ParcoursName />} />
+        <Route path="/parcoursage" element={<ParcoursAge />} />
+        <Route path="/parcoursinterests" element={<ParcoursInterests />} />
+        <Route path="/parcoursstudies" element={<ParcoursStudies />} />
+        <Route
+          path="/parcoursinterestspro"
+          element={<ParcoursInterestsPro />}
+        />
       </Routes>
       <CssBaseline />
     </ThemeProvider>
