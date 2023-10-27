@@ -40,7 +40,7 @@ export default function ChatBoxIaItem({ txtPrompt, stylePlacement }) {
       </Box>
       <Box>
         <Typography sx={{ fontSize: "0.7em" }}>
-          Cette réponse, est elle pértinente ?
+          Ma réponse, est elle pértinente ?
         </Typography>
         <Box className="iaprop-chatboxelement-btn-container">
           <Button onClick={() => handleUsefulnessAnswer("oui")}>Oui</Button>
