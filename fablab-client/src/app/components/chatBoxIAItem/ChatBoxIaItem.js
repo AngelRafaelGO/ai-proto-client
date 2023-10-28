@@ -43,8 +43,8 @@ export default function ChatBoxIaItem({ txtPrompt, stylePlacement }) {
           Ma réponse, est elle pértinente ?
         </Typography>
         <Box className="iaprop-chatboxelement-btn-container">
-          <Button onClick={() => handleUsefulnessAnswer("oui")}>Oui</Button>
-          <Button onClick={() => handleUsefulnessAnswer("non")}>Non</Button>
+          <Button onClick={() => handleUsefulnessAnswer(true)}>Oui</Button>
+          <Button onClick={() => handleUsefulnessAnswer(false)}>Non</Button>
         </Box>
       </Box>
       <Snackbar
