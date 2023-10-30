@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   Box,
@@ -29,6 +29,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 function Chat() {
   const navigate = useNavigate();
   const { state } = useLocation();
+  const scrollRef = useRef(null);
   const [chatBoxMsgArray, setChatBoxMsgArray] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [aiResponseLoading, setAiResponseLoading] = useState(true);
@@ -99,6 +100,12 @@ function Chat() {
   }, [loading]);
 
   useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behaviour: "smooth" });
+    }
+  }, [chatBoxMsgArray]);
+
+  useEffect(() => {
     if (state === null) {
       navigate("/");
     } else {
@@ -150,6 +157,7 @@ function Chat() {
         <Box className="aiprop-chat-airesponse-container">
           {chatBoxMsgArray}
           {aiResponseLoading ? <IaLoading /> : ""}
+          <span ref={scrollRef} />
         </Box>
         <Box sx={{ marginLeft: "49%" }}>
           <Button
