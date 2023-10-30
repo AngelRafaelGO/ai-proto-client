@@ -1,17 +1,17 @@
 import axios from "axios";
 
 export async function getAiResponse(userInputTxt) {
-  const url = "http://localhost:5000/message";
+    const URL     = "http://localhost:5000/ai_response";
+    const API_KEY = "2c1e2da8c62c8666d73d5181"
 
-  return axios
-    .post(url, {
-      apiKey: "la-key",
-      data: { message: userInputTxt },
+    return axios
+        .post(URL, {
+            'apiKey': API_KEY,
+            data: { message: userInputTxt },
     })
     .then((response) => {
-      console.log(response);
-      if (response.status === 200) {
-        return "the-ai-response-txt";
+        if (response.status === 200) {
+            return JSON.parse(response.data);
       }
     })
     .catch((error) => {
@@ -20,37 +20,41 @@ export async function getAiResponse(userInputTxt) {
 }
 
 export async function getInitialAiResponse(userData) {
-  const url = "http://localhost:5000/bon-end-point";
+    const URL     = "http://localhost:5000/init_ai_response";
+    const API_KEY = "2c1e2da8c62c8666d73d5181"
 
-  return axios
-    .post(url, {
-      apiKey: "la-key",
-      data: { message: userData },
-    })
-    .then((response) => {
-      console.log(response);
-      if (response.status === 200) {
-        return "the-ai-response-txt";
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    return axios
+        .post(URL, {
+            'apiKey': API_KEY,
+            data: { message: userData },
+        })
+        .then((response) => {
+            if (response.status === 200) {
+                return JSON.parse(response.data);
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 }
 
+/*
 export async function sendUsefulnessAnswer(answer) {
-  const url = "http://localhost:5000/bon-end-point";
-  return axios
-    .post(url, {
-      apiKey: "la-key",
-      data: { message: answer },
-    })
-    .then((response) => {
-      if (response.status === 200) {
-        return true;
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    const URL     = "http://localhost:5000/answer";
+    const API_KEY = "2c1e2da8c62c8666d73d5181"
+
+    return axios
+        .post(URL, {
+            'apiKey': API_KEY,
+            'data': { 'message': answer },
+        })
+        .then((response) => {
+            if (response.status === 200) {
+                return true;
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 }
+*/

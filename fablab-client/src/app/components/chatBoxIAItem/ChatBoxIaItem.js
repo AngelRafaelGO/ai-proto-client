@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, Typography, Modal, Snackbar } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import "./ChatBoxIaItem.css";
-import { sendUsefulnessAnswer } from "../../services/data.service";
+// import { sendUsefulnessAnswer } from "../../services/data.service";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -11,12 +11,14 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export default function ChatBoxIaItem({ txtPrompt, stylePlacement }) {
   const [toastOpen, setToastOpen] = useState(false);
 
+  /*
   const handleUsefulnessAnswer = async (answer) => {
     const response = await sendUsefulnessAnswer(answer);
     if (response === true) {
       setToastOpen(true);
     }
   };
+  */
 
   const handleToastClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -39,13 +41,16 @@ export default function ChatBoxIaItem({ txtPrompt, stylePlacement }) {
         <Typography>{txtPrompt}</Typography>
       </Box>
       <Box>
+        {/*
         <Typography sx={{ fontSize: "0.7em" }}>
           Ma réponse, est elle pértinente ?
         </Typography>
+          {/*
         <Box className="iaprop-chatboxelement-btn-container">
           <Button onClick={() => handleUsefulnessAnswer(true)}>Oui</Button>
           <Button onClick={() => handleUsefulnessAnswer(false)}>Non</Button>
         </Box>
+        */}
       </Box>
       <Snackbar
         open={toastOpen}

@@ -50,7 +50,7 @@ function Chat() {
   const getResponseFromAi = async (promptTxt) => {
     setAiResponseLoading(true);
     const response = await getAiResponse(promptTxt);
-    return "the-response-from-the-ai";
+    return response.text;
   };
 
   const addElementToChatBox = (txt, placement) => {
@@ -94,7 +94,7 @@ function Chat() {
   const getFirstAiResponse = async () => {
     if (userData != undefined) {
       const firstAiResponse = await getInitialAiResponse(userData);
-      addElementToChatBox("hello", "left");
+      addElementToChatBox(firstAiResponse.text, "left");
       setAiResponseLoading(false);
     }
   };

@@ -6,7 +6,7 @@ WORKDIR /code
 # Nous copions les fichiers package.json et package-lock.json dans notre image.
 COPY fablab-client/package*.json ./
 # Nous installons les packages nécessaires.
-RUN npm install
+RUN npm install && npm i --save-dev dotenv
 # On signal sur quel port notre application va fonctionner.
 EXPOSE 3000
 # On choisit la commande qui va s’exécuter lors du lancement de notre image.
