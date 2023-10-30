@@ -11,6 +11,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export default function ChatBoxIaItem({ txtPrompt, stylePlacement }) {
   const [toastOpen, setToastOpen] = useState(false);
 
+  // Logic to send feedback regarding ai responses
   /*
   const handleUsefulnessAnswer = async (answer) => {
     const response = await sendUsefulnessAnswer(answer);
@@ -41,6 +42,7 @@ export default function ChatBoxIaItem({ txtPrompt, stylePlacement }) {
         <Typography>{txtPrompt}</Typography>
       </Box>
       <Box>
+        {/* Buttons to send feedback regarding ia responses */}
         {/*
         <Typography sx={{ fontSize: "0.7em" }}>
           Ma réponse, est elle pértinente ?

@@ -29,14 +29,6 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 function Chat() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const {
-    userName,
-    userAge,
-    userInterests,
-    userInterestsPro,
-    userStudies,
-    userLocation,
-  } = state;
   const [chatBoxMsgArray, setChatBoxMsgArray] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [aiResponseLoading, setAiResponseLoading] = useState(true);
@@ -107,7 +99,18 @@ function Chat() {
   }, [loading]);
 
   useEffect(() => {
-    if (state != null) {
+    if (state === null) {
+      navigate("/");
+    } else {
+      const {
+        userName,
+        userAge,
+        userInterests,
+        userInterestsPro,
+        userStudies,
+        userLocation,
+      } = state;
+
       setUserData({
         userName,
         userAge,
