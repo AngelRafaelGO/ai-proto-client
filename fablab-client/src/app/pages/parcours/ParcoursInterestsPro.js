@@ -69,8 +69,8 @@ function ParcoursInterestsPro() {
         </Box>
         <Box sx={{ marginTop: "4rem" }}>
           <Typography variant="h5">
-            Par rapport à votre projet professionel, quels sont vos centres ?
-            d'intérêt
+            Par rapport à votre projet professionel, quels sont vos centres
+            d'intérêt ?
           </Typography>
         </Box>
       </Box>
